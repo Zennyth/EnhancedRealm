@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3eqlmwykycgt"]
+
+[ext_resource type="Texture2D" uid="uid://cqw32i01ir76s" path="res://examples/_shared/assets/v1.1 dungeon crawler 16X16 pixel pack/enemies/goblin/goblin_idle_spritesheet.png" id="1_lqqkb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_580jh"]
+atlas = ExtResource("1_lqqkb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7w1s"]
+atlas = ExtResource("1_lqqkb")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o06o1"]
+atlas = ExtResource("1_lqqkb")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8afr"]
+atlas = ExtResource("1_lqqkb")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_werq1"]
+atlas = ExtResource("1_lqqkb")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqo2s"]
+atlas = ExtResource("1_lqqkb")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wkg7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_580jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7w1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o06o1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8afr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_werq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqo2s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[node name="Boss" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_wkg7s")
+autoplay = "default"
+frame_progress = 0.0885827

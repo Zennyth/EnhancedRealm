@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxly1ehvipq4s"]
+
+[ext_resource type="Script" path="res://addons/enhanced_realm/scripts/core/realm.gd" id="1_ve12c"]
+[ext_resource type="Script" path="res://addons/enhanced_realm/scripts/core/tasks/initializations/clear_grid_map_2d_initialization.gd" id="2_gu3ht"]
+[ext_resource type="Script" path="res://addons/enhanced_realm/scripts/core/tasks/initializations/rng_initialization.gd" id="3_ejgl0"]
+[ext_resource type="Script" path="res://addons/enhanced_realm/scripts/core/tasks/generators/walker/walker_generator.gd" id="4_7cequ"]
+[ext_resource type="Script" path="res://addons/enhanced_realm/scripts/core/tasks/generators/walker/walker_generator_settings.gd" id="5_8to6a"]
+
+[sub_resource type="Resource" id="Resource_m18pg"]
+script = ExtResource("2_gu3ht")
+size = Vector2i(100, 100)
+skip = false
+
+[sub_resource type="Resource" id="Resource_1k8lk"]
+script = ExtResource("3_ejgl0")
+use_random_seed = false
+seed = "c28bea8c-5431-45b1-bf3b-44e61b95db23"
+skip = false
+
+[sub_resource type="Resource" id="Resource_2an7c"]
+script = ExtResource("5_8to6a")
+tile = 0
+fullness_check = 0
+max_walkers = 5
+new_dir_chance = 0.5
+new_walker_chance = 0.05
+destroy_walker_chance = 0.05
+room_chances = {
+Vector2(2, 2): 0.5,
+Vector2(3, 3): 0.1
+}
+max_tiles = 150
+constrain_world_size = false
+
+[sub_resource type="Resource" id="Resource_2qwxc"]
+script = ExtResource("4_7cequ")
+settings = SubResource("Resource_2an7c")
+starting_tile = Vector2(0, 0)
+skip = false
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="Realm2D" type="Node2D" parent="TileMap"]
+script = ExtResource("1_ve12c")
+tasks = Array[Resource("res://addons/enhanced_realm/scripts/core/tasks/task.gd")]([SubResource("Resource_m18pg"), SubResource("Resource_1k8lk"), SubResource("Resource_2qwxc"), null])
+
+[node name="Entities" type="Node2D" parent="."]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://cy0gtbv3rl4ic"]
+
+[ext_resource type="Texture2D" uid="uid://cullglby6y8ju" path="res://examples/_shared/assets/v1.1 dungeon crawler 16X16 pixel pack/heroes/knight/knight_idle_spritesheet.png" id="1_wne64"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmlnj"]
+atlas = ExtResource("1_wne64")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr57k"]
+atlas = ExtResource("1_wne64")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxhpq"]
+atlas = ExtResource("1_wne64")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h717b"]
+atlas = ExtResource("1_wne64")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7l31"]
+atlas = ExtResource("1_wne64")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8hun"]
+atlas = ExtResource("1_wne64")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fw86t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmlnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr57k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxhpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h717b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7l31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8hun")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[node name="Spawn" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_fw86t")
+autoplay = "default"
+frame_progress = 0.942782
