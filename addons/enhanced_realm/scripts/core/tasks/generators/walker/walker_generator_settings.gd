@@ -5,9 +5,6 @@ class_name WalkerGeneratorSettings
 
 ## Settings for [WalkerGenerator]
 
-
-@export var transformer: CellData
-
 enum FullnessCheck {
 	TILE_AMOUNT, ## Restricts the generation to a predetermined amount of floor tiles.
 	PERCENTAGE ## Restricts the generation to a percentage of the [param world size]. Automatically sets Constrain World Size to true if set to this mode.

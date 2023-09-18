@@ -12,6 +12,7 @@ class Walker:
 @export var settings: WalkerGeneratorSettings
 @export var poi_configurations: Array[RngPoiConfiguration] = []
 @export var starting_tile := _get_default_starting_tile()
+@export var transformer: CellData
 
 var _walkers : Array[Walker]
 var _walked_tiles : Array[Vector2]
@@ -63,9 +64,8 @@ func _generate_floor() -> void:
 
 		iterations += 1
 	
-	settings.transformer.initialize(realm)
 	for tile in _walked_tiles:
-		settings.transformer.apply(_map.get_cell(Vector2i(tile.x, tile.y)))
+		transformer.apply(_map.get_cell(Vector2i(tile.x, tile.y)))
 
 	_walkers.clear()
 	_walked_tiles.clear()

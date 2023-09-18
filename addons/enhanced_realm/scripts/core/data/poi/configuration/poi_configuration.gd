@@ -5,3 +5,13 @@ class_name PoiConfiguration
 
 @export var template_name: String
 @export var template: PoiTemplate
+
+
+###
+# Editor
+###
+var name: String:
+    get = get_name
+
+func get_name() -> String:
+    return template_name

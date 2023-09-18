@@ -10,9 +10,12 @@ class_name GroupRealmTask
 func _initialize() -> void:
 	realm.initialize_tasks(tasks, group_level + 1)
 
+var debug: String
+
 func execute() -> void:
-	var debug := ""
 	var group_time := Time.get_ticks_msec()
+
+	debug = ""
 
 	for task in tasks:
 		if task.skip:
@@ -27,10 +30,11 @@ func execute() -> void:
 			debug += task.log_task(time) + "\n"
 	
 	if realm.settings.log:
-		print_debug(log_task(group_time) + "\n" + debug.erase(debug.length() - 1, 1))
+		debug = _log_task(group_time) + "\n" + debug.erase(debug.length() - 1, 1)
 
 
-
+func log_task(_time: int) -> String:
+	return debug
 
 func set_tasks(_tasks: Array[RealmTask]) -> void:	
 	tasks = _tasks

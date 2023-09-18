@@ -4,5 +4,3 @@ extends Resource
 class_name BeaconGeneratorSettings
 
 @export var max_failed_attempt: int = 100
-@export var restrict: CellData
-@export var transformer: CellData

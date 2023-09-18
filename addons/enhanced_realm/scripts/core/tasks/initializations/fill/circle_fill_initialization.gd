@@ -12,7 +12,6 @@ func execute() -> void:
 	var map: GridMap2D = get_data(GridMap2D)
 	var radius: int = map.center.x - exclusion_radius
 	
-	transformer.initialize(realm)
 	transformer.apply_cells(map.get_round_region_cells(map.center, radius))
 
 	set_data("radius", radius)

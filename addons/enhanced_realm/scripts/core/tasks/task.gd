@@ -17,10 +17,20 @@ var group_level: int
 func initialize(_realm: Realm2D, _group_level: int = 0) -> void:
 	realm = _realm
 	group_level = _group_level
+
 	_initialize()
+	_initialize_cells_data()
 
 func _initialize() -> void:
 	pass
+
+func _initialize_cells_data() -> void:
+	for property in get_property_list().filter(func(p): return p.usage == 4102 and p.hint_string == "CellData"):
+		if get(property.name) == null:
+			continue
+		
+		get(property.name).initialize(realm)
+
 
 func execute() -> void:
 	pass
@@ -95,10 +105,14 @@ func get_default_name() -> String:
 
 	return ClassUtils.get_custom_class(self).class
 
-func log_task(time: int) -> String:
+
+func _log_task(time: int) -> String:
 	var indentation: String = ""
 	
 	for i in group_level:
 		indentation += "  "
 
 	return "%s[%s] Time taken: %s ms" % [indentation, name, str(Time.get_ticks_msec() - time)]
+
+func log_task(time: int) -> String:
+	return _log_task(time)

@@ -3,6 +3,8 @@
 extends GeneratorRealmTask
 class_name BeaconGenerator
 
+@export var restrict: CellData
+@export var transformer: CellData
 @export var settings: BeaconGeneratorSettings
 @export var poi_configurations: Array[DistributionPoiConfiguration] = []
 
@@ -42,7 +44,7 @@ func execute() -> void:
 			cells = poi.get_area_cells(map)
 			attempt += 1
 
-			if map.has_cell(coordinates) and cells.all(func(cell: GridCell2D): return settings.restrict.is_valid(cell)):
+			if map.has_cell(coordinates) and cells.all(func(cell: GridCell2D): return restrict.is_valid(cell)):
 				check = true
 			
 			if attempt > settings.max_failed_attempt:
@@ -52,7 +54,7 @@ func execute() -> void:
 		poi.coordinates = coordinates
 		poi.cells = cells
 
-		settings.transformer.apply_cells(poi.cells)
+		transformer.apply_cells(poi.cells)
 	
 	for poi in poi_to_remove:
 		pois.erase(poi)
