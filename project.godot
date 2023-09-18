@@ -21,7 +21,7 @@ ClassUtils="*res://addons/enhanced_common/scripts/utils/class_utils.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/enhanced_common/plugin.cfg", "res://addons/enhanced_realm/plugin.cfg", "res://addons/zylann.editor_debugger/plugin.cfg")
+enabled=PackedStringArray("res://addons/enhanced_common/plugin.cfg", "res://addons/enhanced_realm/plugin.cfg", "res://addons/enhanced_resource/plugin.cfg", "res://addons/zylann.editor_debugger/plugin.cfg")
 
 [input]
 

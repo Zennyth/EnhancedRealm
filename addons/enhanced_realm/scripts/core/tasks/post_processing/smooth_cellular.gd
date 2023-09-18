@@ -19,6 +19,10 @@ func execute() -> void:
 	var cells := map.get_round_region_cells(map.center, radius)
 	var neighboors: Array[Array] = []
 
+	restrict_neighboors.initialize(realm)
+	upper_cell_transformer.initialize(realm)
+	lower_cell_transformer.initialize(realm)
+
 	for i in iteration:
 		for cell in cells:
 			var neighbors := map.get_neighbors(cell.coordinates)

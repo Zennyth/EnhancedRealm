@@ -62,9 +62,10 @@ func _generate_floor() -> void:
 				break
 
 		iterations += 1
-
+	
+	settings.transformer.initialize(realm)
 	for tile in _walked_tiles:
-		settings.cell_data.apply(_map.get_cell(Vector2i(tile.x, tile.y)))
+		settings.transformer.apply(_map.get_cell(Vector2i(tile.x, tile.y)))
 
 	_walkers.clear()
 	_walked_tiles.clear()

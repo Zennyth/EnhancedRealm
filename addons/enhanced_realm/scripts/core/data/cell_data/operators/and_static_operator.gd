@@ -8,3 +8,7 @@ class_name AndStaticOperator
 
 func is_valid(cell: GridCell2D) -> bool:
     return operator_1.is_valid(cell) and operator_2.is_valid(cell)
+
+func apply(cell: GridCell2D) -> void:
+    operator_1.apply(cell)
+    operator_2.apply(cell)

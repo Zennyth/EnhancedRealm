@@ -6,7 +6,7 @@ class_name WalkerGeneratorSettings
 ## Settings for [WalkerGenerator]
 
 
-@export var cell_data: CellData
+@export var transformer: CellData
 
 enum FullnessCheck {
 	TILE_AMOUNT, ## Restricts the generation to a predetermined amount of floor tiles.

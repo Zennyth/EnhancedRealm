@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="LayoutCellData" load_steps=2 format=3 uid="uid://bkx48sc7w28tn"]
+
+[ext_resource type="Script" path="res://examples/_shared/resources/cell_data/layout_cell_data.gd" id="1_i1bkj"]
+
+[resource]
+script = ExtResource("1_i1bkj")
+mode = 1
+layout = 0

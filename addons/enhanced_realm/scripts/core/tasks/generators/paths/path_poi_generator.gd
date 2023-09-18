@@ -24,7 +24,7 @@ func execute() -> void:
 		var path: Path = Path.new([previous_poi, poi], cells)
 		paths.append(path)
 
-		for cell in cells:
-			transformer.apply(cell)
+		transformer.initialize(realm)
+		transformer.apply_cells(cells)
 	
 	set_data("paths", paths)

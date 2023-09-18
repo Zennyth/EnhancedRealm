@@ -5,8 +5,7 @@ class_name BoundaryCellData
 
 enum Boundary {
     OUT,
-    IN,
-    BORDER
+    IN
 }
 
 @export var boundary: Boundary

@@ -4,5 +4,6 @@ extends Resource
 class_name RealmSettings
 
 @export var poi_templates: Array[PoiTemplate] = []
+@export var module_settings: Array[ModuleSettings] = []
 @export var multiplayer_support: bool = true
 @export var log: bool = false

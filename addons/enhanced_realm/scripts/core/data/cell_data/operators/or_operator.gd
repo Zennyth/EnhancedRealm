@@ -7,3 +7,7 @@ class_name OrOperator
 
 func is_valid(cell: GridCell2D) -> bool:
     return operators.any(func(operator: CellData): return operator.is_valid(cell))
+
+func apply(cell: GridCell2D) -> void:
+    for operator in operators:
+        operator.apply(cell)

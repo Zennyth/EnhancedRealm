@@ -15,4 +15,5 @@ data_*/
 ## gd-plug
 .plugged/
 addons/enhanced_common/
+addons/enhanced_resource/
 addons/zylann.editor_debugger/

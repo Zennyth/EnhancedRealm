@@ -52,8 +52,7 @@ func execute() -> void:
 		poi.coordinates = coordinates
 		poi.cells = cells
 
-		for cell in poi.cells:
-			settings.cell_data.apply(cell)
+		settings.transformer.apply_cells(poi.cells)
 	
 	for poi in poi_to_remove:
 		pois.erase(poi)
