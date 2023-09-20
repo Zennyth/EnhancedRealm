@@ -47,25 +47,26 @@ func get_options(object: Object, name: String) -> Array[Dictionary]:
 		for i in tile_map.tile_set.get_terrain_sets_count():
 			var terrain_set_name: String = "Terrain Set " + str(i)
 			var icon: Texture2D
-
+			
 			if tile_map.tile_set.get_terrains_count(i) == 1:
 				terrain_set_name = tile_map.tile_set.get_terrain_name(i, 0)
 
-				var source_id: int = tile_map.tile_set.get_source_id(0)
-				var source: TileSetSource = tile_map.tile_set.get_source(source_id)
-				
-				for y in source.get_tiles_count():
-					var source_name: Vector2i = source.get_tile_id(y)
-					var data: TileData = source.get_tile_data(source_name, 0)
+				for x in tile_map.tile_set.get_source_count():
+					var source_id: int = tile_map.tile_set.get_source_id(x)
+					var source: TileSetSource = tile_map.tile_set.get_source(source_id)
+					
+					for y in source.get_tiles_count():
+						var source_name: Vector2i = source.get_tile_id(y)
+						var data: TileData = source.get_tile_data(source_name, 0)
 
-					if data.terrain == i and data.terrain_set == object.terrain_set:
-						var source_image: Image = source.get_runtime_texture().get_image()
-						var recti: Rect2i = source.get_runtime_tile_texture_region(source_name, 0)
-						var image: Image = Image.create(recti.size.x, recti.size.y, true, source_image.get_format())
-						image.blit_rect(source_image, recti, Vector2i.ZERO)
-						image.resize(20, 20)
-						icon = ImageTexture.create_from_image(image)
-						break
+						if data.terrain_set == i and data.terrain == 0:
+							var source_image: Image = source.get_runtime_texture().get_image()
+							var recti: Rect2i = source.get_runtime_tile_texture_region(source_name, 0)
+							var image: Image = Image.create(recti.size.x, recti.size.y, true, source_image.get_format())
+							image.blit_rect(source_image, recti, Vector2i.ZERO)
+							image.resize(20, 20)
+							icon = ImageTexture.create_from_image(image)
+							break
 
 			options.append({ "name": terrain_set_name, "value": i, "icon": icon })
 	
