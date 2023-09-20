@@ -6,7 +6,7 @@ const TileMapEditorInspectorPackedScene = preload("res://addons/enhanced_realm/s
 func _can_handle(object: Object) -> bool:
 	return object is TileRealmInstance
 
-const HANDLED_PROPERTIES: Array[String] = [ "layer", "terrain_set", "terrain", "source", "atlas_coordinates"]
+const HANDLED_PROPERTIES: Array[String] = ["layer", "terrain_set", "terrain", "source", "atlas_coordinates"]
 
 var selection: EditorSelection
 
@@ -45,7 +45,12 @@ func get_options(object: Object, name: String) -> Array[Dictionary]:
 			
 	if name == "terrain_set":
 		for i in tile_map.tile_set.get_terrain_sets_count():
-			options.append({ "name": "Terrain Set " + str(i), "value": i })
+			var terrain_set_name: String = "Terrain Set " + str(i)
+
+			if tile_map.tile_set.get_terrains_count(i) == 1:
+				terrain_set_name = tile_map.tile_set.get_terrain_name(i, 0)
+
+			options.append({ "name": terrain_set_name, "value": i })
 	
 	if name == "terrain":
 		for i in tile_map.tile_set.get_terrains_count(object.terrain_set):
@@ -54,8 +59,13 @@ func get_options(object: Object, name: String) -> Array[Dictionary]:
 	
 	if name == "source":
 		for i in tile_map.tile_set.get_source_count():
-			var source_name: int = tile_map.tile_set.get_source_id(i)
-			options.append({ "name": str(source_name), "value": source_name })
+			var source_id: int = tile_map.tile_set.get_source_id(i)
+			var source_name: String = str(source_id)
+
+			if tile_map.tile_set.get_source(source_id).texture != null:
+				source_name = tile_map.tile_set.get_source(source_id).texture.resource_path.get_file()
+
+			options.append({ "name": source_name, "value": source_id })
 	
 	if name == "atlas_coordinates":
 		var source := tile_map.tile_set.get_source(object.source)

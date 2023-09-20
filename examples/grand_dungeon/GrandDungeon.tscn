@@ -21,7 +21,7 @@
 [ext_resource type="Script" path="res://addons/enhanced_realm/scripts/core/tasks/generators/paths/path_poi_generator.gd" id="17_x8tis"]
 [ext_resource type="Script" path="res://addons/enhanced_realm/scripts/core/data/cell_data/defaults/path_cell_data.gd" id="18_xd0nn"]
 [ext_resource type="Script" path="res://addons/enhanced_realm/scripts/core/tasks/post_processing/smooth_cellular.gd" id="20_68cub"]
-[ext_resource type="Texture2D" uid="uid://cjj1vuiaksaqv" path="res://addons/enhanced_realm/icons/icons8-draw-24.png" id="21_rfdxr"]
+[ext_resource type="Texture2D" uid="uid://domvsimqa5mgd" path="res://addons/enhanced_realm/icons/icons8-draw-24.png" id="21_rfdxr"]
 [ext_resource type="Script" path="res://addons/enhanced_realm/scripts/core/tasks/groups/group.gd" id="22_ui45t"]
 [ext_resource type="Script" path="res://examples/_shared/resources/layout/layout_cell_data.gd" id="23_0vm51"]
 [ext_resource type="Script" path="res://addons/enhanced_realm/scripts/core/data/instances/tile_instance.gd" id="23_m0y48"]

@@ -18,6 +18,7 @@ func _enter_tree():
 	selection = get_editor_interface().get_selection()
 	selection.selection_changed.connect(_on_selection_changed)
 	_on_selection_changed()
+	tile_map_editor_inspector_plugin.initialize(selection)
 
 func _on_selection_changed() -> void:
 	for selected_node in selection.get_selected_nodes():

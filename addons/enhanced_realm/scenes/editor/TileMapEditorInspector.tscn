@@ -9,4 +9,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+text_overrun_behavior = 3
+fit_to_longest_item = false
 script = ExtResource("1_7m55n")
