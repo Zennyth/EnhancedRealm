@@ -18,7 +18,12 @@ func _ready() -> void:
 
 	for i in len(items):
 		var item := items[i]
-		add_item(item.name)
+
+		if "icon" in item:
+			add_icon_item(item.icon, item.name)
+		else:
+			add_item(item.name)
+		
 
 		if object.get(property) == item.value:
 			select(i)

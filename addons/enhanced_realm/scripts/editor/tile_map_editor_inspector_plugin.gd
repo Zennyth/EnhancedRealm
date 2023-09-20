@@ -46,32 +46,87 @@ func get_options(object: Object, name: String) -> Array[Dictionary]:
 	if name == "terrain_set":
 		for i in tile_map.tile_set.get_terrain_sets_count():
 			var terrain_set_name: String = "Terrain Set " + str(i)
+			var icon: Texture2D
 
 			if tile_map.tile_set.get_terrains_count(i) == 1:
 				terrain_set_name = tile_map.tile_set.get_terrain_name(i, 0)
 
-			options.append({ "name": terrain_set_name, "value": i })
+				var source_id: int = tile_map.tile_set.get_source_id(0)
+				var source: TileSetSource = tile_map.tile_set.get_source(source_id)
+				
+				for y in source.get_tiles_count():
+					var source_name: Vector2i = source.get_tile_id(y)
+					var data: TileData = source.get_tile_data(source_name, 0)
+
+					if data.terrain == i and data.terrain_set == object.terrain_set:
+						var source_image: Image = source.get_runtime_texture().get_image()
+						var recti: Rect2i = source.get_runtime_tile_texture_region(source_name, 0)
+						var image: Image = Image.create(recti.size.x, recti.size.y, true, source_image.get_format())
+						image.blit_rect(source_image, recti, Vector2i.ZERO)
+						image.resize(20, 20)
+						icon = ImageTexture.create_from_image(image)
+						break
+
+			options.append({ "name": terrain_set_name, "value": i, "icon": icon })
 	
 	if name == "terrain":
 		for i in tile_map.tile_set.get_terrains_count(object.terrain_set):
 			var terrain_name: String = tile_map.tile_set.get_terrain_name(object.terrain_set, i)
-			options.append({ "name": terrain_name if terrain_name != "" else "Terrain " + str(i), "value": i })
+			if terrain_name == "":
+				terrain_name = "Terrain " + str(i)
+			
+			var icon: Texture2D
+			
+			for x in tile_map.tile_set.get_source_count():
+				var source_id: int = tile_map.tile_set.get_source_id(x)
+				var source: TileSetSource = tile_map.tile_set.get_source(source_id)
+				
+				for y in source.get_tiles_count():
+					var source_name: Vector2i = source.get_tile_id(y)
+					var data: TileData = source.get_tile_data(source_name, 0)
+
+					if data.terrain == i and data.terrain_set == object.terrain_set:
+						var source_image: Image = source.get_runtime_texture().get_image()
+						var recti: Rect2i = source.get_runtime_tile_texture_region(source_name, 0)
+						var image: Image = Image.create(recti.size.x, recti.size.y, true, source_image.get_format())
+						image.blit_rect(source_image, recti, Vector2i.ZERO)
+						image.resize(20, 20)
+						icon = ImageTexture.create_from_image(image)
+						break
+				
+				if icon != null:
+					break
+					
+
+			options.append({ "name": terrain_name, "value": i, "icon": icon })
 	
 	if name == "source":
 		for i in tile_map.tile_set.get_source_count():
 			var source_id: int = tile_map.tile_set.get_source_id(i)
 			var source_name: String = str(source_id)
+			var icon: Texture2D
 
 			if tile_map.tile_set.get_source(source_id).texture != null:
 				source_name = tile_map.tile_set.get_source(source_id).texture.resource_path.get_file()
-
-			options.append({ "name": source_name, "value": source_id })
+				var image: Image = Image.new()
+				image.copy_from(tile_map.tile_set.get_source(source_id).get_runtime_texture().get_image())
+				image.resize(20, 20)
+				icon = ImageTexture.create_from_image(image)
+			
+			options.append({ "name": source_name, "value": source_id, "icon": icon })
 	
 	if name == "atlas_coordinates":
-		var source := tile_map.tile_set.get_source(object.source)
+		var source: TileSetSource = tile_map.tile_set.get_source(object.source)
+		var source_image: Image = source.get_runtime_texture().get_image()
 
 		for i in source.get_tiles_count():
 			var source_name: Vector2i = source.get_tile_id(i)
-			options.append({ "name": str(source_name), "value": source_name })
+			var recti: Rect2i = source.get_runtime_tile_texture_region(source_name, 0)
+
+			var icon: Image = Image.create(recti.size.x, recti.size.y, true, source_image.get_format())
+			icon.blit_rect(source_image, recti, Vector2i.ZERO)
+			icon.resize(20, 20)
+	
+			options.append({ "name": str(source_name), "value": source_name, "icon": ImageTexture.create_from_image(icon) })
 
 	return options
