@@ -16,6 +16,9 @@ func set_generate(_value) -> void:
 func _ready() -> void:
 	initialize_tasks()
 
+	if settings.generate_on_ready:
+		start_generation()
+
 
 @export var tile_map: TileMap
 @export var entities: Node2D

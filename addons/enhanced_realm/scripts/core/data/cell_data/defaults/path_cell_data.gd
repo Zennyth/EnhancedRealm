@@ -6,7 +6,7 @@ class_name PathCellData
 @export var is_path: bool
 
 func is_valid(cell: GridCell2D) -> bool:
-    return cell.get_data("is_path") == is_path
+    return cell.get_boolean_data("is_path") == is_path
 
 func apply(cell: GridCell2D) -> void:
     cell.set_data("is_path", is_path)
