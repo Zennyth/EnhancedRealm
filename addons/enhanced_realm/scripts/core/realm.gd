@@ -30,8 +30,6 @@ func _ready() -> void:
 ###
 # TASKS
 ###
-var data: Dictionary
-
 @export var task: GroupRealmTask = GroupRealmTask.new():
 	set = set_task
 
@@ -63,6 +61,25 @@ func execute_task(task: RealmTask) -> void:
 	
 	if settings.log:
 		print_debug(task.log_task(time))
+
+
+###
+# DATA
+###
+var data: Dictionary
+
+func get_data_by_key(key: String) -> Variant:
+	return data[key]
+
+func get_data(type: Variant) -> Variant:
+	for data in data.values():
+		if is_instance_of(data, type):
+			return data
+	
+	return null
+
+func set_data(key: String, _data: Variant) -> void:
+	data[key] = _data
 
 
 ###

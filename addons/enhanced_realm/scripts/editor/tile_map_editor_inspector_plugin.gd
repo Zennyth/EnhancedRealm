@@ -37,6 +37,8 @@ func get_options(object: Object, name: String) -> Array[Dictionary]:
 			return options
 		
 		selected_nodes[0].initialize_tasks()
+	
+		tile_map = object.tile_map
 
 	if name == "layer":
 		for i in tile_map.get_layers_count():

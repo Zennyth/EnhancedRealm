@@ -22,8 +22,13 @@ func execute() -> void:
 
 	for range_selector in range_selectors:
 		selector_coordinates[range_selector] = []
+	
+	var cells: Array[GridCell2D] = map.get_cell_list()
 
-	for cell in map.get_cell_list().filter(func(cell): return restrict.is_valid(cell)):
+	if restrict != null:
+		cells = cells.filter(func(cell): return restrict.is_valid(cell))
+
+	for cell in cells:
 		var value: float = (noise_texture.noise.get_noise_2d(cell.coordinates.x, cell.coordinates.y) + 1) / 2
 
 		for range_selector in range_selectors.filter(func(range_selector): return range_selector.is_in_range(value)):	

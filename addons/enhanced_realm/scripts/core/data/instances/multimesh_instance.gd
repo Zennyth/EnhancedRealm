@@ -4,18 +4,34 @@ extends RealmInstance
 class_name MultiMeshRealmInstance
 
 @export var texture: Texture2D
+@export var material: Material
 
 var instance: MultiMeshInstance2D
 
 func instantiate(coordinates: Array[Vector2i]) -> void:
-    instance = MultiMeshInstance2D.new()
-    instance.multimesh = MultiMesh.new()
-    instance.multimesh.mesh = QuadMesh.new()
-    (instance.multimesh.mesh as QuadMesh).size = texture.get_size()
-    instance.texture = texture
-    instance.multimesh.instance_count = len(coordinates)
+	instance = MultiMeshInstance2D.new()
+	
+	var multimesh: MultiMesh = MultiMesh.new()
+	var mesh: QuadMesh = QuadMesh.new()
+	mesh.size = texture.get_size()
 
-    for i in len(coordinates):
-        instance.multimesh.set_instance_transform_2d(i, Transform2D(PI, get_global_coordinates(coordinates[i])))
+	if texture is AtlasTexture:
+		var image: Image = texture.atlas.get_image()
+		var icon: Image = Image.create(texture.region.size.x, texture.region.size.y, false, image.get_format())
+		icon.blit_rect(image, texture.region, Vector2i.ZERO)
+		instance.texture = ImageTexture.create_from_image(icon)
+	else:
+		instance.texture = texture
+	
+	multimesh.instance_count = len(coordinates)
+	instance.material = material
 
-    realm.instantiate(instance)
+	for i in len(coordinates):
+		multimesh.set_instance_transform_2d(i, Transform2D(PI, get_global_coordinates(coordinates[i])))
+	
+	multimesh.mesh = mesh
+	instance.multimesh = multimesh
+	realm.instantiate(instance)
+
+var icon: Texture2D:
+	get: return texture

@@ -18,13 +18,25 @@ enum Type {
 ###
 # TERRAIN
 ###
-var terrain_set: int
+var terrain_set: int:
+	set = set_terrain_set
+
+func set_terrain_set(value) -> void:
+	terrain_set = value
+	notify_property_list_changed()
+
 var terrain: int
 
 ###
 # TILE
 ###
-var source: int
+var source: int:
+	set = set_source
+
+func set_source(value) -> void:
+	source = value
+	notify_property_list_changed()
+
 var atlas_coordinates: Vector2i
 
 
@@ -35,7 +47,7 @@ var  tile_map: TileMap:
 	get = get_tile_map
 
 func get_tile_map() -> TileMap:
-	return realm.tile_map
+	return realm.tile_map if realm != null else null
 
 func instantiate(coordinates: Array[Vector2i]) -> void:
 	match type:

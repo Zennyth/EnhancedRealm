@@ -39,24 +39,14 @@ func execute() -> void:
 ###
 # DATA
 ###
-enum CellBoundary {
-	IN,
-	BORDER,
-	OUT,
-}
-
 func get_data_by_key(key: String) -> Variant:
-	return realm.data[key]
+	return realm.get_data_by_key(key)
 
 func get_data(type: Variant) -> Variant:
-	for data in realm.data.values():
-		if is_instance_of(data, type):
-			return data
-	
-	return null
+	return realm.get_data(type)
 
 func set_data(key: String, data: Variant) -> void:
-	realm.data[key] = data
+	return realm.set_data(key, data)
 
 
 ###
